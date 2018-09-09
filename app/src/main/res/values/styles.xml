@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- 设置Menu菜单的背景色 -->
+        <!--<item name="android:itemBackground">@color/left_title</item>-->
+        <!-- 设置Menu菜单的字体颜色 -->
+        <!--<item name="android:textColorPrimary">@color/left_title</item>-->
+        <item name="colorControlNormal">@color/white</item><!-- 主要是这个起作用,修改默认返回键的颜色-->
+        <!-- 设置Menu窗口不覆盖Toolbar视图 -->
+        <!--<item name="overlapAnchor">false</item>-->
+    </style>
+
+    <style name="TransparentDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!--窗体背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>
