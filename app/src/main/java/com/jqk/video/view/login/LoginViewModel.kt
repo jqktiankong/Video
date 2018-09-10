@@ -44,7 +44,7 @@ class LoginViewModel(view: LoginActivity, binding: ActivityLoginBinding) : BaseV
             override fun onSuccess(data: Login) {
                 view.hideProgress()
                 if (data.code == 200) {
-                    view.loginSuccess(data.data.phone)
+                    view.loginSuccess(data.data)
                 } else {
                     view.loginError()
                 }

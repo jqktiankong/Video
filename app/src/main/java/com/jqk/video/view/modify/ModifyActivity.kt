@@ -78,7 +78,7 @@ class ModifyActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_modify)
         viewModel = ModifyViewModel(this, binding!!)
         initToolbar(binding!!.toolbar, true)
-        setTitle(binding!!.title, "注册")
+        setTitle(binding!!.title, "修改密码")
 
         // 注册一个事件回调，用于处理SMSSDK接口请求的结果
         SMSSDK.registerEventHandler(eventHandler)

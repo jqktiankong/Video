@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.R
+import com.jqk.video.bean.Login
 import com.jqk.video.databinding.ActivityLoginBinding
 import com.jqk.video.util.Contants
 import com.jqk.video.util.SPUtils
@@ -32,9 +33,13 @@ class LoginActivity : BaseActivity() {
         return binding!!.password.text.trim().toString()
     }
 
-    fun loginSuccess(phone: String) {
+    fun loginSuccess(data: Login.DataBean) {
         SPUtils.put(this, Contants.KEY_LOGIN, true)
-        SPUtils.put(this, Contants.KEY_PHONE, phone)
+        SPUtils.put(this, Contants.KEY_PHONE, data.phone)
+        SPUtils.put(this, Contants.KEY_PASSWORD, getPassword())
+        SPUtils.put(this, Contants.KEY_OVERDATE, data.overDate)
+        SPUtils.put(this, Contants.KEY_ISOVER, data.isOver)
+        SPUtils.put(this, Contants.KEY_ISAC, data.isAc)
         finish()
     }
 

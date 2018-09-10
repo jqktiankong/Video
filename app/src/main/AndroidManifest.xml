@@ -37,6 +37,14 @@
             android:parentActivityName=".view.login.LoginActivity">
 
         </activity>
+        <activity
+            android:name=".view.setting.SettingActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".view.vip.VipActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".view.setting.SettingActivity"></activity>
     </application>
 
 </manifest>
