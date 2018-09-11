@@ -8,12 +8,10 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.util.Log
 import android.view.View
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.databinding.ActivityMainBinding
-import com.jqk.video.message.LogoutMessage
-import com.jqk.video.util.Contants
+import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.util.StatusBarUtil
 import com.jqk.video.view.home.HomeFragment
@@ -23,8 +21,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
-import org.greenrobot.eventbus.ThreadMode
-import org.greenrobot.eventbus.Subscribe
 
 
 class MainActivity : BaseActivity() {
@@ -38,7 +34,7 @@ class MainActivity : BaseActivity() {
     var broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent!!.action) {
-                Contants.BROADCAST_LOGOUT -> {
+                Constants.BROADCAST_LOGOUT -> {
                     showView(1)
                 }
             }
@@ -55,7 +51,7 @@ class MainActivity : BaseActivity() {
         checkLogin()
 
         var intentFilter = IntentFilter()
-        intentFilter.addAction(Contants.BROADCAST_LOGOUT)
+        intentFilter.addAction(Constants.BROADCAST_LOGOUT)
         registerReceiver(broadcastReceiver, intentFilter)
     }
 
@@ -71,7 +67,7 @@ class MainActivity : BaseActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { aLong ->
-                    if (!(SPUtils.get(this@MainActivity, Contants.KEY_LOGIN, false) as Boolean)) {
+                    if (!(SPUtils.get(this@MainActivity, Constants.KEY_LOGIN, false) as Boolean)) {
                         jumpLogin()
                     }
                 }
@@ -117,7 +113,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun mineClick(v: View) {
-        if (!(SPUtils.get(this@MainActivity, Contants.KEY_LOGIN, false) as Boolean)) {
+        if (!(SPUtils.get(this@MainActivity, Constants.KEY_LOGIN, false) as Boolean)) {
             jumpLogin()
         } else {
             showView(2)

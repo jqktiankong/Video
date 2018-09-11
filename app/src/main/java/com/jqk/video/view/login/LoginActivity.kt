@@ -7,7 +7,7 @@ import com.jqk.video.base.BaseActivity
 import com.jqk.video.R
 import com.jqk.video.bean.Login
 import com.jqk.video.databinding.ActivityLoginBinding
-import com.jqk.video.util.Contants
+import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.view.modify.ModifyActivity
 import com.jqk.video.view.register.RegisterActivity
@@ -34,12 +34,12 @@ class LoginActivity : BaseActivity() {
     }
 
     fun loginSuccess(data: Login.DataBean) {
-        SPUtils.put(this, Contants.KEY_LOGIN, true)
-        SPUtils.put(this, Contants.KEY_PHONE, data.phone)
-        SPUtils.put(this, Contants.KEY_PASSWORD, getPassword())
-        SPUtils.put(this, Contants.KEY_OVERDATE, data.overDate)
-        SPUtils.put(this, Contants.KEY_ISOVER, data.isOver)
-        SPUtils.put(this, Contants.KEY_ISAC, data.isAc)
+        SPUtils.put(this, Constants.KEY_LOGIN, true)
+        SPUtils.put(this, Constants.KEY_PHONE, data.phone)
+        SPUtils.put(this, Constants.KEY_PASSWORD, getPassword())
+        SPUtils.put(this, Constants.KEY_OVERDATE, data.overDate)
+        SPUtils.put(this, Constants.KEY_ISOVER, data.isOver)
+        SPUtils.put(this, Constants.KEY_ISAC, data.isAc)
         finish()
     }
 

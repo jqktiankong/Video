@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jqk.video">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".app.MyApplication"
@@ -45,6 +53,14 @@
             android:name=".view.vip.VipActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".view.setting.SettingActivity"></activity>
+        <activity
+            android:name=".view.home.WebViewActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".view.home.PlayActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".view.home.WebViewActivity"></activity>
     </application>
 
 </manifest>

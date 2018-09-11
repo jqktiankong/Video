@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.jqk.video.R
 import com.jqk.video.base.BaseFragment
 import com.jqk.video.databinding.FragmentMineBinding
-import com.jqk.video.util.Contants
+import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.util.StatusBarUtil
 import com.jqk.video.view.setting.SettingActivity
@@ -29,7 +29,7 @@ class MineFragment : BaseFragment() {
     var broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent!!.action) {
-                Contants.BROADCAST_REFRESH_ACTIVI -> {
+                Constants.BROADCAST_REFRESH_ACTIVI -> {
                     setData()
                 }
             }
@@ -46,17 +46,17 @@ class MineFragment : BaseFragment() {
         setData()
 
         var intentFilter = IntentFilter()
-        intentFilter.addAction(Contants.BROADCAST_REFRESH_ACTIVI)
+        intentFilter.addAction(Constants.BROADCAST_REFRESH_ACTIVI)
         activity!!.registerReceiver(broadcastReceiver, intentFilter)
 
         return view
     }
 
     fun getData() {
-        phone = SPUtils.get(context, Contants.KEY_PHONE, "") as String
-        overDate = SPUtils.get(context, Contants.KEY_OVERDATE, "") as String
-        isOver = SPUtils.get(context, Contants.KEY_ISOVER, 0) as Int
-        isAc = SPUtils.get(context, Contants.KEY_ISAC, 0) as Int
+        phone = SPUtils.get(context, Constants.KEY_PHONE, "") as String
+        overDate = SPUtils.get(context, Constants.KEY_OVERDATE, "") as String
+        isOver = SPUtils.get(context, Constants.KEY_ISOVER, 0) as Int
+        isAc = SPUtils.get(context, Constants.KEY_ISAC, 0) as Int
     }
 
     fun setData() {

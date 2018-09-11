@@ -10,4 +10,5 @@
     <color name="line">#C1C6CF</color>
     <color name="transparent">#00000000</color>
     <color name="text">#8a000000</color>
+    <color name="black">#000000</color>
 </resources>

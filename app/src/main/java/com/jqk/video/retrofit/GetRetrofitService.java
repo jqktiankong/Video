@@ -1,8 +1,7 @@
 package com.jqk.video.retrofit;
 
-import com.jqk.video.util.Contants;
+import com.jqk.video.util.Constants;
 
-import java.lang.invoke.ConstantCallSite;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -20,15 +19,15 @@ public class GetRetrofitService {
 
     public static void init() {
         client = new OkHttpClient.Builder()
-                .connectTimeout(Contants.TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(Contants.TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Contants.TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
                 .build();
     }
 
     public static RetrofitService getRetrofitService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Contants.BASEURL)
+                .baseUrl(Constants.BASEURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

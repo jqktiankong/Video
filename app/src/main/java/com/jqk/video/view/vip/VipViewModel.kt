@@ -6,7 +6,7 @@ import com.jqk.video.base.BaseViewModel
 import com.jqk.video.bean.ActiviCode
 import com.jqk.video.databinding.ActivityVipBinding
 import com.jqk.video.listener.OnDataCallback
-import com.jqk.video.util.Contants
+import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 
 class VipViewModel(view: VipActivity, binding: ActivityVipBinding) : BaseViewModel() {
@@ -22,8 +22,8 @@ class VipViewModel(view: VipActivity, binding: ActivityVipBinding) : BaseViewMod
     }
 
     fun activiCode(v: View) {
-        val phone = SPUtils.get(view, Contants.KEY_PHONE, "") as String
-        val password = SPUtils.get(view, Contants.KEY_PASSWORD, "") as String
+        val phone = SPUtils.get(view, Constants.KEY_PHONE, "") as String
+        val password = SPUtils.get(view, Constants.KEY_PASSWORD, "") as String
         val code = view.getCode()
 
         if (TextUtils.isEmpty(code)) {

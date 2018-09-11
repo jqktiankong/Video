@@ -8,11 +8,9 @@ import com.jqk.video.R
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.databinding.ActivitySettingBinding
 import com.jqk.video.dialog.LogoutDialog
-import com.jqk.video.message.LogoutMessage
-import com.jqk.video.util.Contants
+import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.view.modify.ModifyActivity
-import org.greenrobot.eventbus.EventBus
 
 class SettingActivity : BaseActivity() {
 
@@ -36,10 +34,10 @@ class SettingActivity : BaseActivity() {
         var dialog = LogoutDialog()
         dialog.setOnClickListener(object : LogoutDialog.OnClickListener {
             override fun onClick() {
-                SPUtils.put(this@SettingActivity, Contants.KEY_LOGIN, false)
+                SPUtils.put(this@SettingActivity, Constants.KEY_LOGIN, false)
                 showT("已退出登录")
                 var intent = Intent()
-                intent.action = Contants.BROADCAST_LOGOUT
+                intent.action = Constants.BROADCAST_LOGOUT
                 sendBroadcast(intent)
                 finish()
             }
