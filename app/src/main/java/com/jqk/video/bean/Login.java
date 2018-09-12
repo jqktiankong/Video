@@ -80,5 +80,15 @@ public class Login {
         public void setIsAc(int isAc) {
             this.isAc = isAc;
         }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "overDate='" + overDate + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", isOver=" + isOver +
+                    ", isAc=" + isAc +
+                    '}';
+        }
     }
 }

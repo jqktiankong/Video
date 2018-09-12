@@ -3,6 +3,7 @@ package com.jqk.video.view.login
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.util.Log
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.R
 import com.jqk.video.bean.Login

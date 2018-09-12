@@ -15,6 +15,8 @@ import com.jqk.video.databinding.FragmentMineBinding
 import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.util.StatusBarUtil
+import com.jqk.video.view.about.AboutActivity
+import com.jqk.video.view.mianze.MianzeActivity
 import com.jqk.video.view.setting.SettingActivity
 import com.jqk.video.view.vip.VipActivity
 
@@ -64,32 +66,31 @@ class MineFragment : BaseFragment() {
         if (isOver == 1) {
             binding!!.time.text = "已过期"
         } else {
-            binding!!.time.text = overDate
+            binding!!.time.text = overDate + "到期"
         }
     }
 
     fun vip(v: View) {
 
-//        if (isAc == 1) {
-//            showT("已激活")
-//        } else {
-//            var intent = Intent()
-//            intent.setClass(activity, VipActivity::class.java)
-//            startActivity(intent)
-//        }
-
-        var intent = Intent()
-        intent.setClass(activity, VipActivity::class.java)
-        startActivity(intent)
-
+        if (isAc == 1) {
+            showT("VIP已激活")
+        } else {
+            var intent = Intent()
+            intent.setClass(activity, VipActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun mianze(v: View) {
-
+        var intent = Intent()
+        intent.setClass(activity, MianzeActivity::class.java)
+        startActivity(intent)
     }
 
     fun guanyu(v: View) {
-
+        var intent = Intent()
+        intent.setClass(activity, AboutActivity::class.java)
+        startActivity(intent)
     }
 
     fun setting(v: View) {

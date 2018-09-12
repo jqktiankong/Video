@@ -9,6 +9,7 @@ import com.jqk.video.R
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.databinding.ActivityWebviewBinding
 import android.view.KeyEvent
+import android.view.WindowManager
 
 class WebViewActivity : BaseActivity() {
     var binding: ActivityWebviewBinding? = null
@@ -20,6 +21,9 @@ class WebViewActivity : BaseActivity() {
         val title = intent.getStringExtra("title")
         val url = intent.getStringExtra("url")
         setTitle(binding!!.title, title)
+
+        getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED)
 
         binding!!.webView.loadUrl(url)
     }
@@ -34,16 +38,12 @@ class WebViewActivity : BaseActivity() {
             R.id.action_play -> {
                 var intent = Intent()
                 intent.setClass(this, PlayActivity::class.java)
-                intent.putExtra("url", binding!!.webView.url)
+                intent.putExtra("url", binding!!.webView.getUrl())
                 startActivity(intent)
                 return true
             }
             android.R.id.home -> {
-                if (binding!!.webView.canGoBack()) {
-                    binding!!.webView.goBack()
-                } else {
-                    finish()
-                }
+                finish()
                 return true
             }
             else ->

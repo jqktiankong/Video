@@ -9,6 +9,11 @@ import android.view.ViewGroup
 import com.jqk.video.R
 import com.jqk.video.base.BaseFragment
 import com.jqk.video.databinding.FragmentHomeBinding
+import com.jqk.video.util.Constants
+import com.jqk.video.util.DateUtil
+import com.jqk.video.util.SPUtils
+import com.jqk.video.view.login.LoginActivity
+import java.util.*
 
 
 class HomeFragment : BaseFragment() {
@@ -35,7 +40,32 @@ class HomeFragment : BaseFragment() {
         binding!!.secondItem.layoutParams = lp
     }
 
+    fun isOverDate(): Boolean {
+        val overDate = SPUtils.get(context, Constants.KEY_OVERDATE, "") as String
+        if (System.currentTimeMillis() > (DateUtil.dateToStamp(overDate) + 24 * 60 * 60 * 1000)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fun jumpLogin() {
+        var intent = Intent()
+        intent.setClass(activity, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
     fun aiqiyi(v: View) {
+        if (!(SPUtils.get(context, Constants.KEY_LOGIN, false) as Boolean)) {
+            jumpLogin()
+            return
+        }
+
+        if (isOverDate()) {
+            showT("会员已过期")
+            return
+        }
+
         var intent = Intent()
         intent.setClass(activity, WebViewActivity::class.java)
         intent.putExtra("title", "爱奇艺")
@@ -44,6 +74,16 @@ class HomeFragment : BaseFragment() {
     }
 
     fun tengxun(v: View) {
+        if (!(SPUtils.get(context, Constants.KEY_LOGIN, false) as Boolean)) {
+            jumpLogin()
+            return
+        }
+
+        if (isOverDate()) {
+            showT("会员已过期")
+            return
+        }
+
         var intent = Intent()
         intent.setClass(activity, WebViewActivity::class.java)
         intent.putExtra("title", "腾讯视频")
@@ -52,6 +92,16 @@ class HomeFragment : BaseFragment() {
     }
 
     fun mangguo(v: View) {
+        if (!(SPUtils.get(context, Constants.KEY_LOGIN, false) as Boolean)) {
+            jumpLogin()
+            return
+        }
+
+        if (isOverDate()) {
+            showT("会员已过期")
+            return
+        }
+
         var intent = Intent()
         intent.setClass(activity, WebViewActivity::class.java)
         intent.putExtra("title", "芒果TV")
@@ -60,6 +110,16 @@ class HomeFragment : BaseFragment() {
     }
 
     fun youku(v: View) {
+        if (!(SPUtils.get(context, Constants.KEY_LOGIN, false) as Boolean)) {
+            jumpLogin()
+            return
+        }
+
+        if (isOverDate()) {
+            showT("会员已过期")
+            return
+        }
+
         var intent = Intent()
         intent.setClass(activity, WebViewActivity::class.java)
         intent.putExtra("title", "优酷")

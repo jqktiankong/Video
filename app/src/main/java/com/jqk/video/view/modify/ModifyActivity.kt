@@ -127,6 +127,11 @@ class ModifyActivity : BaseActivity() {
             return
         }
 
+        if (!Validator.isPassword(password)) {
+            showT("密码格式不正确")
+            return
+        }
+
         SMSSDK.submitVerificationCode("86", phone, code);
     }
 

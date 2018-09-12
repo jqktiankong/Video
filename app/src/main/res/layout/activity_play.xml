@@ -18,10 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.jqk.video.view.home.MyWebView
+            <com.jqk.video.view.home.MyWebViewX5
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></com.jqk.video.view.home.MyWebView>
+                android:layout_height="match_parent"></com.jqk.video.view.home.MyWebViewX5>
 
         </com.jqk.video.view.home.MyFrameLayout>
 

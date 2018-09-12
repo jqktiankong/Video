@@ -54,11 +54,13 @@
 
                 <EditText
                     android:id="@+id/phone"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
-                    android:hint="请输入手机号" />
+                    android:hint="请输入手机号"
+                    android:maxLines="1" />
             </LinearLayout>
 
             <ImageView
@@ -86,7 +88,9 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="请输入验证码"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:maxLines="1" />
 
                 <TextView
                     android:id="@+id/getCode"
@@ -116,12 +120,14 @@
 
                 <EditText
                     android:id="@+id/password"
-                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
-                    android:hint="设置密码，不少于6位" />
+                    android:hint="设置密码，不少于6位"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:maxLines="1" />
             </LinearLayout>
 
             <ImageView

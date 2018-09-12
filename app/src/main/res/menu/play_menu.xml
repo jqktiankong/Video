@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_all"
-        android:title="全屏"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_channel1"
         android:title="通道1(默认)"
         app:showAsAction="never" />

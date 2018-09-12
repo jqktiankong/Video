@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -27,12 +28,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <com.jqk.video.view.home.MyWebViewX5
-                android:id="@+id/webView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></com.jqk.video.view.home.MyWebViewX5>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/appicon" />
+
+            <TextView
+                android:id="@+id/versionCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="联系邮箱：505214455@qq.com"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 </layout>

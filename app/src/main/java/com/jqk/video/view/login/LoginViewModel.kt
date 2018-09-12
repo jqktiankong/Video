@@ -39,6 +39,11 @@ class LoginViewModel(view: LoginActivity, binding: ActivityLoginBinding) : BaseV
             return
         }
 
+        if (!Validator.isPassword(password)) {
+            view.showT("密码格式不正确")
+            return
+        }
+
         view.showProgress()
         model.login(phone, password, object : OnDataCallback<Login> {
             override fun onSuccess(data: Login) {
