@@ -2,14 +2,13 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.mob.sdk'
 
-MobSDK {
-    appKey "278023c5f05a6"
-    appSecret "369246d4441e29a4bd9d1b47042c6384"
-
-    SMSSDK {}
-}
+//MobSDK {
+//    appKey "278023c5f05a6"
+//    appSecret "369246d4441e29a4bd9d1b47042c6384"
+//
+//    SMSSDK {}
+//}
 
 ext.sdkVersion = "27.1.1"
 android {
@@ -39,6 +38,12 @@ android {
 
     kapt {
         generateStubs = true
+    }
+}
+
+repositories{
+    flatDir{
+        dirs 'libs' //就是你放aar的目录地址
     }
 }
 

@@ -21,7 +21,7 @@ class SettingActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_setting)
         binding!!.view = this
         initToolbar(binding!!.toolbar, true)
-        setTitle("设置")
+        setTitle(binding!!.title, "设置")
     }
 
     fun modify(v: View) {
