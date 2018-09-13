@@ -38,7 +38,7 @@ class VipActivity : BaseActivity() {
     }
 
     fun activiFail(message: String) {
-        showT("激活失败" + message)
+        showT("fail " + message)
     }
 
     override fun onDestroy() {

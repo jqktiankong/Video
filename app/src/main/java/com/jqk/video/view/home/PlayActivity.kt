@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.annotation.Nullable
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -35,28 +36,51 @@ class PlayActivity : BaseActivity() {
         getWindow().addFlags(
                 WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED)
 
-        this.getWindow().getDecorView().addOnLayoutChangeListener(View.OnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
-            if (oldList != null && getAllChildViews(this.getWindow().getDecorView()).size > oldList!!.size) {
+//        this.getWindow().getDecorView().addOnLayoutChangeListener(View.OnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+//            if (oldList != null && getAllChildViews(this.getWindow().getDecorView()).size > oldList!!.size) {
+//                for (view in getAllChildViews(this.getWindow().getDecorView())) {
+//                    if (!oldList!!.contains(view)) {
+//                        view.visibility = View.GONE
+//                    }
+//                }
+//            }
+//
+//            val outView = ArrayList<View>()
+//            this.getWindow().getDecorView().findViewsWithText(outView, "缓存", View.FIND_VIEWS_WITH_TEXT)
+//            this.getWindow().getDecorView().findViewsWithText(outView, "画面比例", View.FIND_VIEWS_WITH_TEXT)
+//            val size = outView.size
+//            if (outView != null && outView.size > 0) {
+//                oldList = getAllChildViews(this.getWindow().getDecorView())
+//                outView[0].visibility = View.GONE
+//            }
+//        })
 
-                for (view in getAllChildViews(this.getWindow().getDecorView())) {
+        this.window.decorView.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+            override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
 
-                    if (!oldList!!.contains(view)) {
+//                var outView = ArrayList<View>()
+//                window.decorView.findViewsWithText(outView, "缓存", View.FIND_VIEWS_WITH_TEXT)
+//                window.decorView.findViewsWithText(outView, "分享", View.FIND_VIEWS_WITH_TEXT)
+//                val size = outView.size
 
-                        view.visibility = View.GONE
-                    }
+                // 隐藏三个点
+                var shareView = window.decorView.findViewById<View>(35)
+                var dlView = window.decorView.findViewById<View>(30)
+                if (shareView != null) {
+                    shareView.visibility = View.GONE
                 }
-            }
 
-            val outView = ArrayList<View>()
-            this.getWindow().getDecorView().findViewsWithText(outView, "缓存", View.FIND_VIEWS_WITH_TEXT)
-            this.getWindow().getDecorView().findViewsWithText(outView, "分享", View.FIND_VIEWS_WITH_TEXT)
-            val size = outView.size
-            if (outView != null && outView.size > 0) {
-                oldList = getAllChildViews(this.getWindow().getDecorView())
-                outView[0].visibility = View.GONE
+                if (dlView != null) {
+                    dlView.visibility = View.GONE
+                }
+
+//                if (outView != null && outView.size > 0) {
+//                    outView[0].visibility = View.GONE
+//                    Log.d("123", "view.getid = " + outView[0].id)
+//
+//                }
             }
         })
-
 
         url = intent.getStringExtra("url")
         binding!!.webView.loadUrl(channel + url)

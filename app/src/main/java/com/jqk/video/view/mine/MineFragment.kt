@@ -13,6 +13,7 @@ import com.jqk.video.R
 import com.jqk.video.base.BaseFragment
 import com.jqk.video.databinding.FragmentMineBinding
 import com.jqk.video.util.Constants
+import com.jqk.video.util.DateUtil
 import com.jqk.video.util.SPUtils
 import com.jqk.video.util.StatusBarUtil
 import com.jqk.video.view.about.AboutActivity
@@ -32,6 +33,7 @@ class MineFragment : BaseFragment() {
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent!!.action) {
                 Constants.BROADCAST_REFRESH_ACTIVI -> {
+                    getData()
                     setData()
                 }
             }
@@ -62,8 +64,7 @@ class MineFragment : BaseFragment() {
     }
 
     fun setData() {
-        binding!!.phone.text = phone
-        if (isOver == 1) {
+        if (System.currentTimeMillis() > (DateUtil.dateToStamp(overDate) + 24 * 60 * 60 * 1000)) {
             binding!!.time.text = "已过期"
         } else {
             binding!!.time.text = overDate + "到期"
@@ -72,12 +73,12 @@ class MineFragment : BaseFragment() {
 
     fun vip(v: View) {
 
-        if (isAc == 1) {
-            showT("VIP已激活")
-        } else {
+        if (System.currentTimeMillis() > (DateUtil.dateToStamp(overDate) + 24 * 60 * 60 * 1000)) {
             var intent = Intent()
             intent.setClass(activity, VipActivity::class.java)
             startActivity(intent)
+        } else {
+            showT("VIP已激活")
         }
     }
 
