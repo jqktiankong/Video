@@ -13,7 +13,6 @@ import com.jqk.video.util.Constants
 import com.jqk.video.util.DateUtil
 import com.jqk.video.util.SPUtils
 import com.jqk.video.view.login.LoginActivity
-import java.util.*
 
 
 class HomeFragment : BaseFragment() {
