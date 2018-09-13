@@ -58,27 +58,18 @@ class PlayActivity : BaseActivity() {
         this.window.decorView.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
             override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
 
-//                var outView = ArrayList<View>()
-//                window.decorView.findViewsWithText(outView, "缓存", View.FIND_VIEWS_WITH_TEXT)
-//                window.decorView.findViewsWithText(outView, "分享", View.FIND_VIEWS_WITH_TEXT)
-//                val size = outView.size
+                var outView = ArrayList<View>()
+                window.decorView.findViewsWithText(outView, "缓存", View.FIND_VIEWS_WITH_TEXT)
+                val size = outView.size
 
-                // 隐藏三个点
-                var shareView = window.decorView.findViewById<View>(35)
-                var dlView = window.decorView.findViewById<View>(30)
-                if (shareView != null) {
-                    shareView.visibility = View.GONE
+                if (outView != null && outView.size > 0) {
+                    outView[0].visibility = View.GONE
+                    // 找到三个点，并隐藏
+                    var shareView = window.decorView.findViewById<View>(outView[0].id + 5)
+                    if (shareView != null) {
+                        shareView.visibility = View.GONE
+                    }
                 }
-
-                if (dlView != null) {
-                    dlView.visibility = View.GONE
-                }
-
-//                if (outView != null && outView.size > 0) {
-//                    outView[0].visibility = View.GONE
-//                    Log.d("123", "view.getid = " + outView[0].id)
-//
-//                }
             }
         })
 
