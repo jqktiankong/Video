@@ -2,24 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_channel1"
-        android:title="通道1(默认)"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/action_channel1"
+            android:title="通道1(默认)"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_channel2"
-        android:title="通道2"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/action_channel2"
+            android:title="通道2"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_channel3"
-        android:title="通道3"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/action_channel3"
+            android:title="通道3"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_channel4"
-        android:title="通道4"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/action_channel4"
+            android:title="通道4"
+            app:showAsAction="never" />
 
 </menu>

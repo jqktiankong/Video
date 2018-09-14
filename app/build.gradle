@@ -3,13 +3,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-//MobSDK {
-//    appKey "278023c5f05a6"
-//    appSecret "369246d4441e29a4bd9d1b47042c6384"
-//
-//    SMSSDK {}
-//}
-
 ext.sdkVersion = "27.1.1"
 android {
     compileSdkVersion 27
@@ -25,10 +18,36 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            //这里修改apk文件名
+            outputFileName = "video.apk"
+        }
+    }
+
+    signingConfigs {
+        debugConfig {
+            keyAlias "key"
+            keyPassword "jiqingke"
+            storeFile file("D:/Android/key/video.jks")
+            storePassword "jiqingke"
+        }
+        releaseConfig {
+            keyAlias "key"
+            keyPassword "jiqingke"
+            storeFile file("D:/Android/key/video.jks")
+            storePassword "jiqingke"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debugConfig
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+
         }
     }
 
