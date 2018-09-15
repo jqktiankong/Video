@@ -89,6 +89,8 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"></activity>
 
+        <service android:name=".UpdateService"></service>
+
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

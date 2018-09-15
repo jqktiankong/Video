@@ -26,30 +26,30 @@ android {
         }
     }
 
-    signingConfigs {
-        debugConfig {
-            keyAlias "key"
-            keyPassword "jiqingke"
-            storeFile file("D:/Android/key/video.jks")
-            storePassword "jiqingke"
-        }
-        releaseConfig {
-            keyAlias "key"
-            keyPassword "jiqingke"
-            storeFile file("D:/Android/key/video.jks")
-            storePassword "jiqingke"
-        }
-    }
-
-    buildTypes {
-        debug {
-            signingConfig signingConfigs.debugConfig
-        }
-        release {
-            signingConfig signingConfigs.releaseConfig
-
-        }
-    }
+//    signingConfigs {
+//        debugConfig {
+//            keyAlias "key"
+//            keyPassword "jiqingke"
+//            storeFile file("D:/Android/key/video.jks")
+//            storePassword "jiqingke"
+//        }
+//        releaseConfig {
+//            keyAlias "key"
+//            keyPassword "jiqingke"
+//            storeFile file("D:/Android/key/video.jks")
+//            storePassword "jiqingke"
+//        }
+//    }
+//
+//    buildTypes {
+//        debug {
+//            signingConfig signingConfigs.debugConfig
+//        }
+//        release {
+//            signingConfig signingConfigs.releaseConfig
+//
+//        }
+//    }
 
     dataBinding {
         enabled = true

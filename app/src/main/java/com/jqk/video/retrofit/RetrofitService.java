@@ -1,6 +1,7 @@
 package com.jqk.video.retrofit;
 
 import com.jqk.video.bean.ActiviCode;
+import com.jqk.video.bean.AppVersion;
 import com.jqk.video.bean.Login;
 import com.jqk.video.bean.Modify;
 import com.jqk.video.bean.Register;
@@ -32,4 +33,12 @@ public interface RetrofitService {
     Observable<ActiviCode> activiCode(@Query("phone") String userName,
                                       @Query("password") String passWord,
                                       @Query("code") String code);
+
+    /**
+     * 获取版本号
+     *
+     * @return
+     */
+    @GET("appVersionApi/getNowAppVersion")
+    Observable<AppVersion> getNowAppVersion();
 }

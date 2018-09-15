@@ -1,16 +1,25 @@
 package com.jqk.video
 
+import android.Manifest
+import android.annotation.TargetApi
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.databinding.DataBindingUtil
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.util.AsyncListUtil
 import android.view.View
 import com.jqk.video.base.BaseActivity
+import com.jqk.video.bean.AppVersion
 import com.jqk.video.databinding.ActivityMainBinding
+import com.jqk.video.dialog.UpdateDialog
+import com.jqk.video.listener.OnDataCallback
+import com.jqk.video.util.APKVersionCodeUtils
 import com.jqk.video.util.Constants
 import com.jqk.video.util.SPUtils
 import com.jqk.video.util.StatusBarUtil
@@ -24,12 +33,16 @@ import java.util.concurrent.TimeUnit
 
 
 class MainActivity : BaseActivity() {
+    val INSTALL_PACKAGES_REQUESTCODE = 1
 
     var binding: ActivityMainBinding? = null
     var ft: FragmentTransaction? = null
 
     var homeFragment: HomeFragment? = null
     var mineFragment: MineFragment? = null
+
+    var model: MainModel? = null
+    var updateUrl: String? = null
 
     var broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -53,6 +66,10 @@ class MainActivity : BaseActivity() {
         var intentFilter = IntentFilter()
         intentFilter.addAction(Constants.BROADCAST_LOGOUT)
         registerReceiver(broadcastReceiver, intentFilter)
+
+        model = MainModel()
+
+        getVersion()
     }
 
     override fun onAttachFragment(fragment: Fragment) {
@@ -120,8 +137,62 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    fun getVersion() {
+        if (!(SPUtils.get(this@MainActivity, Constants.KEY_LOGIN, false) as Boolean)) {
+            model!!.getNowAppVersion(object : OnDataCallback<AppVersion> {
+                override fun onSuccess(data: AppVersion) {
+                    update(data)
+                }
+
+                override fun onError() {
+
+                }
+            })
+        }
+    }
+
+    fun update(appVersion: AppVersion) {
+        try {
+            if (APKVersionCodeUtils.getVersionCode(this) < Integer.parseInt(appVersion.getVersion().getAndroidVersion())) {
+                // 开始下载
+                updateUrl = appVersion.getVersion().getAndroidUrl()
+                checkApi()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @TargetApi(26)
+    fun checkApi() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            val b = packageManager.canRequestPackageInstalls()
+            if (b) {
+                showUpdateDialog(updateUrl!!)
+            } else {
+                //请求安装未知应用来源的权限
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.REQUEST_INSTALL_PACKAGES), INSTALL_PACKAGES_REQUESTCODE)
+            }
+        } else {
+            showUpdateDialog(updateUrl!!)
+        }
+    }
+
+    fun showUpdateDialog(url: String) {
+        val updatedialog = UpdateDialog()
+        updatedialog.setOnUpdateListener(object : UpdateDialog.OnUpdateListener {
+            override fun onStart() {
+                val intent = Intent(this@MainActivity, UpdateService::class.java)
+                intent.putExtra("url", url)
+                startService(intent)
+            }
+        })
+        updatedialog.show(supportFragmentManager, "UpdateDialog")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(broadcastReceiver)
+        model!!.onDestroy()
     }
 }
