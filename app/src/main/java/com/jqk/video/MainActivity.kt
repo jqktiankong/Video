@@ -7,13 +7,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.util.AsyncListUtil
 import android.view.View
+import android.widget.Toast
 import com.jqk.video.base.BaseActivity
 import com.jqk.video.bean.AppVersion
 import com.jqk.video.databinding.ActivityMainBinding
@@ -43,6 +46,8 @@ class MainActivity : BaseActivity() {
 
     var model: MainModel? = null
     var updateUrl: String? = null
+
+    var updatedialog: UpdateDialog? = null
 
     var broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -175,7 +180,9 @@ class MainActivity : BaseActivity() {
                 showUpdateDialog(updateUrl!!)
             } else {
                 //请求安装未知应用来源的权限
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.REQUEST_INSTALL_PACKAGES), INSTALL_PACKAGES_REQUESTCODE)
+                var packageURI = Uri.parse("package:" + this.getPackageName())
+                var intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI)
+                startActivityForResult(intent, INSTALL_PACKAGES_REQUESTCODE)
             }
         } else {
             showUpdateDialog(updateUrl!!)
@@ -183,15 +190,35 @@ class MainActivity : BaseActivity() {
     }
 
     fun showUpdateDialog(url: String) {
-        val updatedialog = UpdateDialog()
-        updatedialog.setOnUpdateListener(object : UpdateDialog.OnUpdateListener {
-            override fun onStart() {
-                val intent = Intent(this@MainActivity, UpdateService::class.java)
-                intent.putExtra("url", url)
-                startService(intent)
+        if (updatedialog == null) {
+            updatedialog = UpdateDialog()
+            updatedialog!!.setOnUpdateListener(object : UpdateDialog.OnUpdateListener {
+                override fun onStart() {
+                    val intent = Intent(this@MainActivity, UpdateService::class.java)
+                    intent.putExtra("url", url)
+                    startService(intent)
+                }
+            })
+
+            if (!updatedialog!!.isAdded() && !updatedialog!!.isVisible() && !updatedialog!!.isRemoving()) {
+                updatedialog!!.show(supportFragmentManager, "UpdateDialog")
             }
-        })
-        updatedialog.show(supportFragmentManager, "UpdateDialog")
+
+        } else {
+            if (!updatedialog!!.isAdded() && !updatedialog!!.isVisible() && !updatedialog!!.isRemoving()) {
+                updatedialog!!.show(supportFragmentManager, "UpdateDialog")
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK && requestCode == INSTALL_PACKAGES_REQUESTCODE) {
+            showUpdateDialog(updateUrl!!)
+        } else {
+            Toast.makeText(this, "无法下载新版本", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroy() {
