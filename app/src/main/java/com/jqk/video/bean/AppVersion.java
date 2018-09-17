@@ -6,9 +6,23 @@ package com.jqk.video.bean;
 
 public class AppVersion {
 
+    /**
+     * code : 200
+     * message : ok！
+     * data : {"ver":"12","dowmLink":"http://download.mybaicai.top/video.apk"}
+     */
+
+    private int code;
     private String message;
-    private VersionBean version;
-    private String status;
+    private DataBean data;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public String getMessage() {
         return message;
@@ -18,45 +32,37 @@ public class AppVersion {
         this.message = message;
     }
 
-    public VersionBean getVersion() {
-        return version;
+    public DataBean getData() {
+        return data;
     }
 
-    public void setVersion(VersionBean version) {
-        this.version = version;
+    public void setData(DataBean data) {
+        this.data = data;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public static class VersionBean {
+    public static class DataBean {
         /**
-         * androidVersion : 6
-         * androidUrl : http://www.stardaymart.com/stardaymart.apk
+         * ver : 12
+         * dowmLink : http://download.mybaicai.top/video.apk
          */
 
-        private String androidVersion;
-        private String androidUrl;
+        private String ver;
+        private String dowmLink;
 
-        public String getAndroidVersion() {
-            return androidVersion;
+        public String getVer() {
+            return ver;
         }
 
-        public void setAndroidVersion(String androidVersion) {
-            this.androidVersion = androidVersion;
+        public void setVer(String ver) {
+            this.ver = ver;
         }
 
-        public String getAndroidUrl() {
-            return androidUrl;
+        public String getDowmLink() {
+            return dowmLink;
         }
 
-        public void setAndroidUrl(String androidUrl) {
-            this.androidUrl = androidUrl;
+        public void setDowmLink(String dowmLink) {
+            this.dowmLink = dowmLink;
         }
     }
 }

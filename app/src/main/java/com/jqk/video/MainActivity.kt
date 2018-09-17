@@ -68,6 +68,10 @@ class MainActivity : BaseActivity() {
         registerReceiver(broadcastReceiver, intentFilter)
 
         model = MainModel()
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         getVersion()
     }
@@ -138,7 +142,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun getVersion() {
-        if (!(SPUtils.get(this@MainActivity, Constants.KEY_LOGIN, false) as Boolean)) {
+        if ((SPUtils.get(this@MainActivity, Constants.KEY_LOGIN, false) as Boolean)) {
             model!!.getNowAppVersion(object : OnDataCallback<AppVersion> {
                 override fun onSuccess(data: AppVersion) {
                     update(data)
@@ -153,11 +157,11 @@ class MainActivity : BaseActivity() {
 
     fun update(appVersion: AppVersion) {
         try {
-            if (APKVersionCodeUtils.getVersionCode(this) < Integer.parseInt(appVersion.getVersion().getAndroidVersion())) {
+            if (APKVersionCodeUtils.getVersionCode(this) < Integer.parseInt(appVersion.data.ver)) {
                 // 开始下载
-                updateUrl = appVersion.getVersion().getAndroidUrl()
-                checkApi()
+                updateUrl = appVersion.data.dowmLink
             }
+            checkApi()
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -2,8 +2,6 @@ package com.jqk.video.util;
 
 import android.util.Log;
 
-import com.saneki.starday.util.AppConstants;
-
 /**
  * Created by Administrator on 2017/9/21 0021.
  */
@@ -15,7 +13,7 @@ public class L {
     }
 
     public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
-    private static final String TAG = AppConstants.TAG;
+    private static final String TAG = "video";
 
     // 下面四个是默认tag的函数
     public static void i(String msg) {

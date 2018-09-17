@@ -39,6 +39,6 @@ public interface RetrofitService {
      *
      * @return
      */
-    @GET("appVersionApi/getNowAppVersion")
+    @GET("getVersion")
     Observable<AppVersion> getNowAppVersion();
 }
