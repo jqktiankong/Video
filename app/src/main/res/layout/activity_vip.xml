@@ -76,6 +76,35 @@
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="315dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/copy"
+                    android:layout_alignRight="@+id/copy"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginRight="100dp"
+                    android:text="激活码可在qq群中领取，qq交流群：539811283" />
+
+                <TextView
+                    android:id="@+id/copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:onClick="@{viewModel::copy}"
+                    android:text="复制群号"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

@@ -73,10 +73,6 @@ class MainActivity : BaseActivity() {
         registerReceiver(broadcastReceiver, intentFilter)
 
         model = MainModel()
-    }
-
-    override fun onStart() {
-        super.onStart()
 
         getVersion()
     }

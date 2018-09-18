@@ -72,14 +72,9 @@ class MineFragment : BaseFragment() {
     }
 
     fun vip(v: View) {
-
-        if (System.currentTimeMillis() > (DateUtil.dateToStamp(overDate) + 24 * 60 * 60 * 1000)) {
-            var intent = Intent()
-            intent.setClass(activity, VipActivity::class.java)
-            startActivity(intent)
-        } else {
-            showT("VIP已激活")
-        }
+        var intent = Intent()
+        intent.setClass(activity, VipActivity::class.java)
+        startActivity(intent)
     }
 
     fun mianze(v: View) {
