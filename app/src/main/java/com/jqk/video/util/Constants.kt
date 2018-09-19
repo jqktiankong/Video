@@ -13,6 +13,7 @@ object Constants {
 
     const val BROADCAST_LOGOUT = "com.jqk.video.logout"
     const val BROADCAST_REFRESH_ACTIVI = "com.jqk.video.refresh.activi"
+    const val BROADCAST_UPDATA = "com.jqk.video.updata"
 
     const val CHANNEL1 = "http://jx.618g.com/?url="
     const val CHANNEL2 = "http://play.vipmv.me//player.php?platform_id=15&vweb=1&line=2&uid=233790&devtype=2&ykxurl="

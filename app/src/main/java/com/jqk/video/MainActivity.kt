@@ -1,6 +1,5 @@
 package com.jqk.video
 
-import android.Manifest
 import android.annotation.TargetApi
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,10 +10,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.util.AsyncListUtil
 import android.view.View
 import android.widget.Toast
 import com.jqk.video.base.BaseActivity
@@ -22,10 +19,7 @@ import com.jqk.video.bean.AppVersion
 import com.jqk.video.databinding.ActivityMainBinding
 import com.jqk.video.dialog.UpdateDialog
 import com.jqk.video.listener.OnDataCallback
-import com.jqk.video.util.APKVersionCodeUtils
-import com.jqk.video.util.Constants
-import com.jqk.video.util.SPUtils
-import com.jqk.video.util.StatusBarUtil
+import com.jqk.video.util.*
 import com.jqk.video.view.home.HomeFragment
 import com.jqk.video.view.login.LoginActivity
 import com.jqk.video.view.mine.MineFragment
@@ -55,6 +49,9 @@ class MainActivity : BaseActivity() {
                 Constants.BROADCAST_LOGOUT -> {
                     showView(1)
                 }
+                Constants.BROADCAST_UPDATA -> {
+                    getVersion()
+                }
             }
         }
     }
@@ -70,6 +67,7 @@ class MainActivity : BaseActivity() {
 
         var intentFilter = IntentFilter()
         intentFilter.addAction(Constants.BROADCAST_LOGOUT)
+        intentFilter.addAction(Constants.BROADCAST_UPDATA)
         registerReceiver(broadcastReceiver, intentFilter)
 
         model = MainModel()
@@ -161,8 +159,8 @@ class MainActivity : BaseActivity() {
             if (APKVersionCodeUtils.getVersionCode(this) < Integer.parseInt(appVersion.data.ver)) {
                 // 开始下载
                 updateUrl = appVersion.data.dowmLink
+                checkApi()
             }
-            checkApi()
         } catch (e: Exception) {
             e.printStackTrace()
         }

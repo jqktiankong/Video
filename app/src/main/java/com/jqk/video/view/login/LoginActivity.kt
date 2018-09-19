@@ -41,6 +41,10 @@ class LoginActivity : BaseActivity() {
         SPUtils.put(this, Constants.KEY_OVERDATE, data.overDate)
         SPUtils.put(this, Constants.KEY_ISOVER, data.isOver)
         SPUtils.put(this, Constants.KEY_ISAC, data.isAc)
+
+        var intent = Intent()
+        intent.action = Constants.BROADCAST_UPDATA
+        sendBroadcast(intent)
         finish()
     }
 
