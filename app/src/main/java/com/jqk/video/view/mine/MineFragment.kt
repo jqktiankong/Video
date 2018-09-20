@@ -69,6 +69,8 @@ class MineFragment : BaseFragment() {
         } else {
             binding!!.time.text = overDate + "到期"
         }
+
+        binding!!.phone.text = phone
     }
 
     fun vip(v: View) {
