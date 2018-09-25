@@ -34,6 +34,7 @@ class VipActivity : BaseActivity() {
         SPUtils.put(this, Constants.KEY_ISAC, data.isAc)
         var intent = Intent()
         intent.action = Constants.BROADCAST_REFRESH_ACTIVI
+        sendBroadcast(intent)
         finish()
     }
 
